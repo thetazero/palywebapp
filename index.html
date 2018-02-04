@@ -3,8 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico'/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <style>
+        .navigations {
+            position: fixed;
+            bottom: 0px;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0px -3px 5px #DDDDDD;
+            background-color: white;
+        }
+
+        .navigations span {
+            width: 19%;
+            display: inline-block;
+            background-color: white;
+            cursor: pointer;
+            padding-top: 5px;
+        }
+
+        .normaltext {
+            font-size: medium;
+        }
+
+        .navigations span:hover {
+            width: 19%;
+            display: inline-block;
+            background-color: #AAAAAA;
+            animation-name: darken;
+            animation-duration: 0.5s;
+        }
+
+        @keyframes darken {
+            0% {
+                background-color: white;
+            }
+            100% {
+                background-color: #AAAAAA;
+            }
+        }
+
+        .navigations span i {
+            font-size: 30px;
+        }
+
+        body {
+            margin: 0px;
+            font-family: 'Roboto', sans-serif;
+
+        }
+
+        .bodymargin {
+            margin: 8px;
+        }
+
+        .selected {
+            color: #2ECC40;
+        }
+
+        .click {
+            cursor: pointer;
+        }
+
+        .click::selection {
+            background-color: transparent !important;
+        }
+    </style>
+    <style>
+        #daynav {
+            font-size: 24px !important;
+        }
+
+        #daynav::selection {
+            background-color: transparent !important;
+        }
+
+        .card {
+            width: 80%;
+            text-align: center;
+            border-radius: 5px;
+            padding: 15px;
+        }
+
+        .blue {
+            background-color: #0074D9;
+        }
+
+        .red {
+            background-color: #FF4136;
+        }
+
+        .teal {
+            background-color: #39CCCC;
+        }
+
+        .orange {
+            background-color: #FF851B;
+        }
+
+        .specialcolor {
+            background-color: #F012BE;
+        }
+
+    </style>
+    <script>
+        var day = new Date();
+        var daylenght = 86400000;
+        var start2018days = 17533;
+        var infos = [0, 0, 0, 0, 0, 0, 0, 0, 't', 'b', 'a', 'b', 0, 0, 0, 't', 'b', 'a', 'b', 0, 0, 'c', 't', 'b', 'a', 'b', 0, 0, 'c', 't',
+            'b', 'a', 'b', 0, 0, 'm', 't', 'amc', 'a', 'b', 0, 0, 'b', 't', 'b', 'a', 0, 0, 0, 0, 't', 'b', 'a', 'b', 0, 0, 'c', 't', 'b',
+            'a', 'b']
+
+        function date() {
+            var today = day.toString();
+            var todays = today.split(' ');
+            today = todays[0] + " " + todays[1] + " " + todays[2];
+
+            return today;
+        }
+        function adddate(num) {
+            day = new Date(day.getTime() + (24 * 60 * 60 * 1000 * num));
+            document.getElementById('date').innerHTML = date();
+            if (infos[dayify(day.getTime())] == 0) {
+                document.getElementById('name').innerText = "No School!";
+                clearcards();
+            } else if (infos[dayify(day.getTime())] == "t") {
+                document.getElementById('name').innerText = "T Day (2,4,6,Flex)";
+                clearcards();
+                var color = "blue";
+                addcard("Period 2", "8:15am - 9:45am", color);
+                addcard("Brunch", "9:45am - 9:55am", color);
+                addcard("Period 4", "10:00am - 11:40am", color);
+                addcard("Lunch", "11:40am - 12:15pm", color);
+                addcard("Period 6", "12:20pm - 1:50pm", color);
+                addcard("Flex", "2:00pm - 2:50pm", color);
+                addcard("Staff", "2:55pm-3:35pm", color);
+            } else if (infos[dayify(day.getTime())] == "b") {
+                document.getElementById('name').innerText = "B Day (1,3,5,7)";
+                clearcards();
+                var color = "red";
+                addcard("Period 1", "8:15am - 9:45am", color);
+                addcard("Brunch", "9:45am - 9:55am", color);
+                addcard("Period 3", "10:00am - 11:40am", color);
+                addcard("Lunch", "11:40am - 12:15pm", color);
+                addcard("Period 5", "12:20pm - 1:50pm", color);
+                addcard("Period 7", "2:00pm - 3:30pm", color);
+            } else if (infos[dayify(day.getTime())] == "c") {
+                document.getElementById('name').innerText = "C Day (1,2,3,4,5,6,7)";
+                clearcards();
+                var color = "teal";
+                addcard("Period 1", "8:15am - 9:05am", color);
+                addcard("Period 2", "9:10am - 10:00am", color);
+                addcard("Brunch", "10:00am - 10:10am", color);
+                addcard("Period 3", "10:15am - 11:05am", color);
+                addcard("Period 4", "11:10am - 12:05pm", color);
+                addcard("Lunch", "12:05pm - 12:40pm", color);
+                addcard("Period 5", "12:45pm - 1:35pm", color);
+                addcard("Period 6", "1:40pm - 2:30pm", color);
+                addcard("Period 7", "2:35pm - 3:25pm", color);
+            } else if (infos[dayify(day.getTime())] == "a") {
+                document.getElementById('name').innerText = "A Day (2,4,6,Adv)";
+                clearcards();
+                var color = "orange";
+                addcard("Period 2", "8:15am - 9:45am", color);
+                addcard("Brunch", "9:45am - 9:55am", color);
+                addcard("Period 4", "10:00am - 11:40am", color);
+                addcard("Lunch", "11:40am - 12:15pm", color);
+                addcard("Period 6", "12:20pm - 1:50pm", color);
+                addcard("Advisory", "2:00pm - 2:35pm", color);
+                addcard("Staff Collaboration", "2:40pm - 3:35pm", color);
+            } else if (infos[dayify(day.getTime())] == "sp") {
+                document.getElementById('name').innerText = "Special Schedule (1,2,3,4,5,6,7)";
+                clearcards()
+            } else if (infos[dayify(day.getTime())] == "m") {
+                document.getElementById('name').innerText = "Minimum Day (1,2,3,4,5,6,7)";
+                clearcards();
+                var color = "specialcolor";
+                addcard("Period 1", "8:15am - 8:45am", color);
+                addcard("Period 2", "8:50am - 9:20am", color);
+                addcard("Period 3", "9:25am - 9:55am", color);
+                addcard("Brunch", "9:55am - 10:05am", color);
+                addcard("Period 4", "10:10am - 10:45am", color);
+                addcard("Period 5", "10:50pm - 11:20pm", color);
+                addcard("Period 6", "11:25 pm - 11:55pm", color);
+                addcard("Period 7", "11:25 pm - 11:55pm", color);
+            } else if (infos[dayify(day.getTime())] == "amc") {
+                document.getElementById('name').innerText = "AMC Day";
+                clearcards();
+                var color = "specialcolor";
+                addcard("AMC", "8:15am - 9:45am", color);
+                addcard("Brunch", "9:45am - 9:55am", color);
+                addcard("Period 3", "10:00am - 11:10am", color);
+                addcard("Period 3", "11:15am - 12:25am", color);
+                addcard("Lunch", "12:25am - 1:05pm", color);
+                addcard("Period 5", "1:05pm - 2:15pm", color);
+                addcard("Period 7", "2:20pm - 3:30pm", color);
+            } else {
+                document.getElementById('name').innerText = "Oh noes I don't noes";
+                clearcards()
+            }
+        }
+        function dayify(input) {
+            return Math.floor(input / daylenght) - start2018days;
+        }
+        function clearcards() {
+            document.getElementById('cards').innerHTML = "";
+        }
+        function addcard(title, small, color) {
+            document.getElementById('cards').innerHTML += "<div class='card " + color + "'>" + "<h1>" + title + "</h1>" + "<p>" + small + "</p>" + "</div><br>";
+        }
+        window.onload = function () {
+            adddate(0);
+        }
+
+
+    </script>
 </head>
 <body>
+<div class="bodymargin">
+    <center>
+        <h1>Schedule</h1>
+        <span id="daynav"><i class="material-icons click" onclick="adddate(-1)">keyboard_arrow_left</i>
+            Days
+            <i class="material-icons click" onclick="adddate(1)">keyboard_arrow_right</i>
+        </span>
+        <div id="date"></div>
+        <div id="outputs">
+            <h1 id="name"></h1>
+            <div id="cards">
 
+            </div>
+        </div>
+    </center>
+
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<nav class='navigations'>
+    <span>
+        <a>
+        <i class="material-icons">perm_contact_calendar</i><br>
+        thing
+        </a>
+    </span>
+    <span>
+        <a>
+        <i class="material-icons">directions_run</i><br>
+        Sports
+        </a>
+    </span>
+    <span>
+        <a>
+        <i class="material-icons selected">perm_contact_calendar</i><br>
+        schedule
+        </a>
+    </span>
+    <span>
+        <a>
+        <i class="material-icons">perm_contact_calendar</i><br>
+        thing
+        </a>
+    </span>
+    <span>
+        <a>
+        <i class="material-icons">perm_contact_calendar</i><br>
+        thing
+        </a>
+    </span>
+</nav>
 </body>
 </html>
