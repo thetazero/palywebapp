@@ -108,14 +108,21 @@
             background-color: #F012BE;
         }
 
+        .invisible {
+            background-color: transparent;
+            color: transparent;
+        }
+
     </style>
     <script>
         var day = new Date();
         var daylenght = 86400000;
         var start2018days = 17533;
-        var infos = [0, 0, 0, 0, 0, 0, 0, 0, 't', 'b', 'a', 'b', 0, 0, 0, 't', 'b', 'a', 'b', 0, 0, 'c', 't', 'b', 'a', 'b', 0, 0, 'c', 't',
-            'b', 'a', 'b', 0, 0, 'm', 't', 'amc', 'a', 'b', 0, 0, 'b', 't', 'b', 'a', 0, 0, 0, 0, 't', 'b', 'a', 'b', 0, 0, 'c', 't', 'b',
-            'a', 'b']
+        var infos = [0, 0, 0, 0, 0, 0, 0, 't', 'b', 'a', 'b', 0, 0, 0, 't', 'b', 'a', 'b', 0, 0, 'c', 't', 'b', 'a', 'b', 0, 0, 'c', 't',
+            'b', 'a', 'b', 0, 0, 'm', 't', 'amc', 'a', 'b', 0, 0, 'b', 't', 'b', 'a', 0, 0, 0, 't', 'b', 'a', 'b', 0, 0, 'c', 't', 'b', 'a',
+            'b', 0, 0, 'c', 't', 'b', 'a', 'b', 0, 0, 0, 't', 'b', 'a', 'b', 0, 0, 'c', 't', 'b', 'a', 'b', 0, 0, 'alt', 'alt', 'alt', 'alt',
+            'm', 0, 0, 0, 0, 0, 0, 0, 0, 0, 'c', 't', 'b', 'a', 'b', 0, 0, 'c', 't', 'b', 'a', 'b', 0, 0, 'alt', 't', 'b', 'a', 'b', 0, 0,
+            'c']
 
         function date() {
             var today = day.toString();
@@ -130,6 +137,17 @@
             if (infos[dayify(day.getTime())] == 0) {
                 document.getElementById('name').innerText = "No School!";
                 clearcards();
+                if (day.getDay() == 0 || day.getDay() == 6) {
+                    addcard('Its the weekend', 'yay!', 'specialcolor')
+                } else {
+                    addcard('No school!', 'yay!', 'specialcolor')
+                }
+                addcard('this is invisible', 'invisible text', 'invisible');
+                addcard('this is invisible', 'invisible text', 'invisible');
+                addcard('this is invisible', 'invisible text', 'invisible');
+                addcard('this is invisible', 'invisible text', 'invisible');
+                addcard('this is invisible', 'invisible text', 'invisible');
+                addcard('this is invisible', 'invisible text', 'invisible');
             } else if (infos[dayify(day.getTime())] == "t") {
                 document.getElementById('name').innerText = "T Day (2,4,6,Flex)";
                 clearcards();
@@ -187,9 +205,9 @@
                 addcard("Period 3", "9:25am - 9:55am", color);
                 addcard("Brunch", "9:55am - 10:05am", color);
                 addcard("Period 4", "10:10am - 10:45am", color);
-                addcard("Period 5", "10:50pm - 11:20pm", color);
-                addcard("Period 6", "11:25 pm - 11:55pm", color);
-                addcard("Period 7", "11:25 pm - 11:55pm", color);
+                addcard("Period 5", "10:50am - 11:20am", color);
+                addcard("Period 6", "11:25am - 11:55am", color);
+                addcard("Period 7", "12:00pm - 12:30pm", color);
             } else if (infos[dayify(day.getTime())] == "amc") {
                 document.getElementById('name').innerText = "AMC Day";
                 clearcards();
@@ -201,6 +219,9 @@
                 addcard("Lunch", "12:25am - 1:05pm", color);
                 addcard("Period 5", "1:05pm - 2:15pm", color);
                 addcard("Period 7", "2:20pm - 3:30pm", color);
+            } else if (infos[dayify(day.getTime())] == "alt") {
+                document.getElementById('name').innerText = "Alt Day (whatever that means)";
+                clearcards();
             } else {
                 document.getElementById('name').innerText = "Oh noes I don't noes";
                 clearcards()
@@ -236,6 +257,8 @@
             <div id="cards">
 
             </div>
+            any advices or complaints? If send me them over here:<a href="javascript:(function(){window.open('https://mail.google.com/mail/?ui=2&view=cm&fs=1&tf=1&shva=1','Compose%20Gmail','status=no,directories=no,location=no,resizable=no,menubar=no,width=600,height=600,toolbar=no');})();" >lesha.seletskiy@gmail.com</a>
+            <br>
         </div>
     </center>
 
