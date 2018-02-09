@@ -115,11 +115,6 @@
 
     </style>
     <script>
-        window.onload = function () {
-            document.getElementById("dateinput").onchange = function () {
-                setdate(document.getElementById('dateinput').valueAsDate);
-            }
-        };
         var day = new Date();
         var daylenght = 86400000;
         var start2018days = 17533;
@@ -328,5 +323,10 @@
         </a>
     </span>
 </nav>
+<script>
+    document.getElementById("dateinput").onchange = function () {
+        setdate(document.getElementById('dateinput').valueAsDate);
+    }
+</script>
 </body>
 </html>
