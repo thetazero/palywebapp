@@ -119,10 +119,10 @@
         var daylenght = 86400000;
         var start2018days = 17533;
         var infos = [0, 0, 0, 0, 0, 0, 0, 't', 'b', 'a', 'b', 0, 0, 0, 't', 'b', 'a', 'b', 0, 0, 'c', 't', 'b', 'a', 'b', 0, 0, 'c', 't',
-            'b', 'a', 'b', 0, 0, 'm', 't', 'amc', 'a', 'b', 0, 0, 'b', 't', 'b', 'a', 0, 0, 0, 't', 'b', 'a', 'b', 0, 0, 'c', 't', 'b', 'a',
+            'b', 'a', 'b', 0, 0, 'm', 't', 'amc', 'a', 'b', 0, 0, 'b', 't', 'b', 'a', 0, 0, 0, 0, 't', 'b', 'a', 'b', 0, 0, 'c', 't', 'b', 'a',
             'b', 0, 0, 'c', 't', 'b', 'a', 'b', 0, 0, 0, 't', 'b', 'a', 'b', 0, 0, 'c', 't', 'b', 'a', 'b', 0, 0, 'alt', 'alt', 'alt', 'alt',
             'm', 0, 0, 0, 0, 0, 0, 0, 0, 0, 'c', 't', 'b', 'a', 'b', 0, 0, 'c', 't', 'b', 'a', 'b', 0, 0, 'alt', 't', 'b', 'a', 'b', 0, 0,
-            'c']
+            'c', 't', 'b', 'a', 'b', 0, 0, 'c', 't', 'b', 'a', 'b', 0, 0]
 
         function date() {
             var today = day.toString();
@@ -131,9 +131,27 @@
 
             return today;
         }
+        function inputdate() {
+            var today = day;
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            if (dd < 10) {
+                dd = '0' + dd
+            }
+
+            if (mm < 10) {
+                mm = '0' + mm
+            }
+
+            today = mm + '/' + dd + '/' + yyyy;
+            return today;
+        }
         function adddate(num) {
             day = new Date(day.getTime() + (24 * 60 * 60 * 1000 * num));
             document.getElementById('date').innerHTML = date();
+            document.getElementById('dateinput').innerHTML = inputdate();
             if (infos[dayify(day.getTime())] == 0) {
                 document.getElementById('name').innerText = "No School!";
                 clearcards();
@@ -247,8 +265,9 @@
 <div class="bodymargin">
     <center>
         <h1>Schedule</h1>
-        <span id="daynav"><i class="material-icons click" onclick="adddate(-1)">keyboard_arrow_left</i>
-            Days
+        <span id="daynav">
+            <i class="material-icons click" onclick="adddate(-1)">keyboard_arrow_left</i>
+            <input type="date" id="dateinput">
             <i class="material-icons click" onclick="adddate(1)">keyboard_arrow_right</i>
         </span>
         <div id="date"></div>
@@ -257,7 +276,8 @@
             <div id="cards">
 
             </div>
-            any advices or complaints? If send me them over here:<a href="javascript:(function(){window.open('https://mail.google.com/mail/?ui=2&view=cm&fs=1&tf=1&shva=1','Compose%20Gmail','status=no,directories=no,location=no,resizable=no,menubar=no,width=600,height=600,toolbar=no');})();" >lesha.seletskiy@gmail.com</a>
+            any advices or complaints? If send me them over here:<a
+                href="javascript:(function(){window.open('https://mail.google.com/mail/?ui=2&view=cm&fs=1&tf=1&shva=1','Compose%20Gmail','status=no,directories=no,location=no,resizable=no,menubar=no,width=600,height=600,toolbar=no');})();">lesha.seletskiy@gmail.com</a>
             <br>
         </div>
     </center>
