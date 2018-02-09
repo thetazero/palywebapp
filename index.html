@@ -115,6 +115,11 @@
 
     </style>
     <script>
+        window.onload = function () {
+            document.getElementById("dateinput").onchange = function () {
+                setdate(document.getElementById('dateinput').valueAsDate);
+            }
+        };
         var day = new Date();
         var daylenght = 86400000;
         var start2018days = 17533;
@@ -128,7 +133,6 @@
             var today = day.toString();
             var todays = today.split(' ');
             today = todays[0] + " " + todays[1] + " " + todays[2];
-
             return today;
         }
         function inputdate() {
@@ -145,13 +149,17 @@
                 mm = '0' + mm
             }
 
-            today = mm + '/' + dd + '/' + yyyy;
+            today = yyyy + '-' + mm + '-' + dd;
             return today;
+        }
+        function setdate(date) {
+            day = date;
+            adddate(1);
         }
         function adddate(num) {
             day = new Date(day.getTime() + (24 * 60 * 60 * 1000 * num));
             document.getElementById('date').innerHTML = date();
-            document.getElementById('dateinput').innerHTML = inputdate();
+            document.getElementById('dateinput').value = inputdate();
             if (infos[dayify(day.getTime())] == 0) {
                 document.getElementById('name').innerText = "No School!";
                 clearcards();
@@ -267,7 +275,7 @@
         <h1>Schedule</h1>
         <span id="daynav">
             <i class="material-icons click" onclick="adddate(-1)">keyboard_arrow_left</i>
-            <input type="date" id="dateinput">
+            <input type="date" class='click' id="dateinput">
             <i class="material-icons click" onclick="adddate(1)">keyboard_arrow_right</i>
         </span>
         <div id="date"></div>
