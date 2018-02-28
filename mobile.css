@@ -79,3 +79,9 @@ body {
     border-radius: 5px;
     padding: 15px;
 }
+
+.arrows{
+    font-size:500%;
+    background-color:lightgrey;
+    border-radius: 50%;
+}
