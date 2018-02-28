@@ -58,7 +58,6 @@ body {
 .click {
     cursor: pointer;
     font-size:200%;
-    display:none
 }
 
 .click::selection {
