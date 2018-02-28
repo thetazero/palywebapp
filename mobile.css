@@ -85,3 +85,20 @@ body {
     background-color:lightgrey;
     border-radius: 50%;
 }
+
+.arrows::selection{
+
+    animation-name: darken;
+    animation-duration: 0.5s;
+}
+@keyframes darkenify {
+    0%{
+          background-color:lightgrey;
+    }
+    50%{
+        background-color:grey;
+    }
+    0%{
+        background-color:lightgrey;
+    }
+}
