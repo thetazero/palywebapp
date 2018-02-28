@@ -7,86 +7,9 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
+    <link type="text/css" media="screen and (min-device-width: 1000px)" rel="stylesheet" href="desktop.css">
+    <link type="text/css" media="screen and (max-device-width: 999px)" rel="stylesheet" href="mobile.css">
     <style>
-        .navigations {
-            position: fixed;
-            bottom: 0px;
-            text-align: center;
-            width: 100%;
-            box-shadow: 0px -3px 5px #DDDDDD;
-            background-color: white;
-        }
-
-        .navigations span {
-            width: 19%;
-            display: inline-block;
-            background-color: white;
-            cursor: pointer;
-            padding-top: 5px;
-        }
-
-        .normaltext {
-            font-size: medium;
-        }
-
-        .navigations span:hover {
-            width: 19%;
-            display: inline-block;
-            background-color: #AAAAAA;
-            animation-name: darken;
-            animation-duration: 0.5s;
-        }
-
-        @keyframes darken {
-            0% {
-                background-color: white;
-            }
-            100% {
-                background-color: #AAAAAA;
-            }
-        }
-
-        .navigations span i {
-            font-size: 30px;
-        }
-
-        body {
-            margin: 0px;
-            font-family: 'Roboto', sans-serif;
-
-        }
-
-        .bodymargin {
-            margin: 8px;
-        }
-
-        .selected {
-            color: #2ECC40;
-        }
-
-        .click {
-            cursor: pointer;
-        }
-
-        .click::selection {
-            background-color: transparent !important;
-        }
-    </style>
-    <style>
-        #daynav {
-            font-size: 24px !important;
-        }
-
-        #daynav::selection {
-            background-color: transparent !important;
-        }
-
-        .card {
-            width: 80%;
-            text-align: center;
-            border-radius: 5px;
-            padding: 15px;
-        }
 
         .blue {
             background-color: #0074D9;
@@ -260,7 +183,6 @@
         window.onload = function () {
             adddate(0);
         }
-
 
     </script>
 </head>
